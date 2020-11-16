@@ -3,6 +3,9 @@ steps:
   args: ['build', '-t', 'gcr.io/$PROJECT_ID/play-parl-ai:${_TAG}', '-f', 'Dockerfile', '.']
 - name: 'gcr.io/cloud-builders/docker'
   args: ['tag', 'gcr.io/$PROJECT_ID/play-parl-ai:${_TAG}', 'gcr.io/$PROJECT_ID/play-parl-ai:latest']
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: gcloud
+  args: ['run', 'deploy', 'parl-ai', '--image', gcr.io/$PROJECT_ID/play-parl-ai:latest, '--region', 'asia-northeast1', '--platform', 'managed']
 timeout: 900s
 substitutions:
   _TAG: '0.1'
