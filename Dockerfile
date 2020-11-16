@@ -14,4 +14,4 @@ COPY run.sh .
 
 # Expose the client port
 EXPOSE 8080
-CMD sh run.sh
+CMD ["sh","./run.sh"]
